@@ -12,7 +12,7 @@ export type LogEntry = {
 };
 
 export const gameStore = writable<PlayerStore>({
-	players: {},
+	players: {Huy:1500,Sophie:2500,Sesame:112},
 	logs: []
 });
 
