@@ -17,6 +17,9 @@ export const gameStore = writable<PlayerStore>({
 });
 
 export function addPlayer(name: string, balance: number) {
+	if (!name) {
+		return;
+	}
 	gameStore.update((s) => {
 		if (!s.players[name]) {
 			s.players[name] = balance;
