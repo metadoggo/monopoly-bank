@@ -18,19 +18,24 @@ export const gameStore = writable<PlayerStore>({
 
 export function addPlayer(name: string, balance: number) {
 	gameStore.update((s) => {
-		s.players[name] = balance;
+		if (!s.players[name]) {
+			s.players[name] = balance;
+		}
 		return s;
 	});
 }
 
-export function removePlayerAt(name: string) {
+export function removePlayer(name: string) {
 	gameStore.update((s) => {
 		delete s.players[name];
 		return s;
 	});
 }
 
-export function adjust(name: string, amount: number) {
+export function adjustBalance(name: string, amount: number) {
+	if (!amount) {
+		return;
+	}
 	gameStore.update((s) => {
 		if (s.players[name]) {
 			s.players[name] += amount;
